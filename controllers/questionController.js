@@ -3,11 +3,9 @@ const Extra = require("telegraf/extra");
 const { TicketModel } = require("../models");
 const { compileMessage } = require("../utils");
 
-
 function createQuestionMessage(ticket, questionNumber = 0) {
     const [question] = ticket.questions.splice(questionNumber, 1);
-    const image = question.image ? `<a href="${question.image}">\u{2063}</a>` : "";
-    const message = `${image}${question.text}\n
+    const message = `${question.text}\n
     ${question.answers.map((answer) => answer.text).join("\n")}`;
     const buttons = question.answers.map((answer, indx) => Markup.callbackButton(
         `${indx+1} Вариант`,
@@ -18,9 +16,21 @@ function createQuestionMessage(ticket, questionNumber = 0) {
     ]);
 
     return {
+        image: question.image,
         message: compileMessage(message),
         keyboard,
     };
+}
+
+function sendQuestionMessageToUser(ctx, { image, message, keyboard } = {}) {
+    if (!image)
+        return ctx.replyWithHTML(message, keyboard.extra());
+    if (message.length >= 200) {
+        const photo = `<a href="${image}">\u{2063}</a>`;
+        return ctx.replyWithHTML(photo + message, keyboard.extra());
+    }
+
+    return ctx.replyWithPhoto(image, Extra.load({ caption: message }).markup(keyboard));
 }
 
 exports.startTestAction = async(ctx) => {
@@ -28,9 +38,9 @@ exports.startTestAction = async(ctx) => {
     const ticket = await TicketModel.findById(ticketId);
     if (!ticket) return ctx.answerCbQuery("Я не нашел Ваш билет :(", true);
     ctx.answerCbQuery("");
-    const { message, keyboard } = createQuestionMessage(ticket);
+    const questionMessage = createQuestionMessage(ticket);
 
-    return ctx.replyWithHTML(message, keyboard.extra());
+    return sendQuestionMessageToUser(ctx, questionMessage);
 };
 
 exports.answerAction = async(ctx) => {
@@ -43,10 +53,14 @@ exports.answerAction = async(ctx) => {
     ctx.answerCbQuery("✅Ответ Верный !");
     // проверяем закончился ли наш тест
     const nextQuestionNumber = Number(questionNumber) + 1;
-    if (ticket.questions.length <= nextQuestionNumber)
-        return ctx.reply("Тест успешно завершен !");
+    if (ticket.questions.length <= nextQuestionNumber) {
+        const keyboard = Markup.inlineKeyboard([
+            [Markup.callbackButton("«Вернуться", "back")],
+        ]);
+        return ctx.reply("Тест успешно завершен !", keyboard.extra());
+    }
 
     // отправляет следующий вопрос
-    const { message, keyboard } = createQuestionMessage(ticket, nextQuestionNumber);
-    return ctx.replyWithHTML(message, keyboard.extra());
+    const questionMessage = createQuestionMessage(ticket, nextQuestionNumber);
+    return sendQuestionMessageToUser(ctx, questionMessage);
 };
