@@ -36,8 +36,8 @@ function sendQuestionMessageToUser(ctx, { image, message, keyboard } = {}) {
 exports.startTestAction = async(ctx) => {
     const [, ticketId] = ctx.match;
     const ticket = await TicketModel.findById(ticketId);
-    if (!ticket) return ctx.answerCbQuery("Я не нашел Ваш билет :(", true);
-    ctx.answerCbQuery("");
+    if (!ticket) return ctx.answerCbQuery("Я не нашел Ваш билет :(", true).catch(console.error);
+    ctx.answerCbQuery("").catch(console.error);
     const questionMessage = createQuestionMessage(ticket);
 
     return sendQuestionMessageToUser(ctx, questionMessage);
@@ -46,11 +46,11 @@ exports.startTestAction = async(ctx) => {
 exports.answerAction = async(ctx) => {
     const [, ticketId, questionNumber, answerStatus] = ctx.match;
     // проверяем верный ли ответ
-    if (answerStatus == "false") return ctx.answerCbQuery("❌Ответ НЕверный !");
+    if (answerStatus == "false") return ctx.answerCbQuery("👎Ответ НЕверный !").catch(console.error);
     // проверяем наличие билета
     const ticket = await TicketModel.findById(ticketId);
-    if (!ticket) return ctx.answerCbQuery("Я не нашел Ваш билет :(", true);
-    ctx.answerCbQuery("👍Ответ Верный !");
+    if (!ticket) return ctx.answerCbQuery("Я не нашел Ваш билет :(", true).catch(console.error);
+    ctx.answerCbQuery("👍Ответ Верный !").catch(console.error);
     // проверяем закончился ли наш тест
     const nextQuestionNumber = Number(questionNumber) + 1;
     if (ticket.questions.length <= nextQuestionNumber) {

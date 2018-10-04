@@ -70,7 +70,7 @@ exports.action = async(ctx) => {
     const { message, keyboard } = createTicketsMessage(tickets);
 
     try {
-        ctx.answerCbQuery("");
+        ctx.answerCbQuery("").catch(console.error);
         await ctx.editMessageText(message, keyboard.extra());
     } catch (err) {
         console.error(err);
@@ -78,6 +78,6 @@ exports.action = async(ctx) => {
 };
 
 exports.backAction = (ctx) => {
-    ctx.answerCbQuery("");
+    ctx.answerCbQuery("").catch(console.error);
     return exports.command(ctx);
 };
