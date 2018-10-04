@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const mongoosePaginate = require("mongoose-paginate");
 
 const AnswerSchema = mongoose.Schema({
     value: { type: String, required: true },
@@ -20,5 +21,6 @@ const TicketSchema = mongoose.Schema({
     link: { type: String, required: true },
     questions: [QuestionSchema],
 });
+TicketSchema.plugin(mongoosePaginate);
 
 module.exports = mongoose.model("Ticket", TicketSchema);
