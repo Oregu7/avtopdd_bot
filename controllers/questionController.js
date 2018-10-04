@@ -50,7 +50,7 @@ exports.answerAction = async(ctx) => {
     // проверяем наличие билета
     const ticket = await TicketModel.findById(ticketId);
     if (!ticket) return ctx.answerCbQuery("Я не нашел Ваш билет :(", true);
-    ctx.answerCbQuery("✅Ответ Верный !");
+    ctx.answerCbQuery("👍Ответ Верный !");
     // проверяем закончился ли наш тест
     const nextQuestionNumber = Number(questionNumber) + 1;
     if (ticket.questions.length <= nextQuestionNumber) {

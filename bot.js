@@ -25,5 +25,4 @@ bot.action(/^back$/, ticketsController.backAction);
 bot.action(/^ticket:(\w+)$/, questionController.startTestAction);
 bot.action(/^question:(\w+);(\d+);(true|false)$/, questionController.answerAction);
 
-// start bot
-bot.startPolling();
+module.exports = bot;
