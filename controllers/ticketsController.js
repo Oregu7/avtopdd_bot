@@ -47,8 +47,6 @@ function createTicketsMessage(result) {
     return { message, keyboard };
 }
 
-
-
 exports.command = async(ctx) => {
     const tickets = await TicketModel.paginate({}, {
         page: 1,
@@ -77,4 +75,9 @@ exports.action = async(ctx) => {
     } catch (err) {
         console.error(err);
     }
+};
+
+exports.backAction = (ctx) => {
+    ctx.answerCbQuery("");
+    return exports.command(ctx);
 };

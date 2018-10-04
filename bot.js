@@ -4,6 +4,7 @@ const { localSession } = require("./utils");
 const {
     startController,
     ticketsController,
+    questionController,
 } = require("./controllers");
 
 // configure
@@ -20,6 +21,9 @@ bot.command("tickets", ticketsController.command);
 bot.hears(/билеты/i, ticketsController.command);
 // actions
 bot.action(/^tickets:(\d+)$/, ticketsController.action);
+bot.action(/^back$/, ticketsController.backAction);
+bot.action(/^ticket:(\w+)$/, questionController.startTestAction);
+bot.action(/^question:(\w+);(\d+);(true|false)$/, questionController.answerAction);
 
 // start bot
 bot.startPolling();
