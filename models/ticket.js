@@ -9,7 +9,7 @@ const AnswerSchema = mongoose.Schema({
 });
 
 const QuestionSchema = mongoose.Schema({
-    questionId: { type: Number, required: true, unique: true },
+    questionId: { type: Number, required: true },
     text: { type: String, required: true },
     image: { type: String, default: "" },
     answers: [AnswerSchema],

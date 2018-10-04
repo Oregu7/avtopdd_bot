@@ -18,6 +18,7 @@
         "request": "^2.88.0",
         "request-promise": "^4.2.2",
         "telegraf": "^3.24.0",
+        "telegraf-session-local": "0.0.6",
         "thread-sleep": "^2.1.0"
     }
 }
