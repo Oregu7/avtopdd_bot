@@ -8,6 +8,7 @@ const REQUIRED_VARIABLES = [
     //"NODE_ENV",
     "BOT_TOKEN",
     "DB_URL",
+    "TELEGRAPH_TOKEN",
 ];
 
 // start mongo
@@ -25,6 +26,7 @@ module.exports = {
     env: process.env.NODE_ENV,
     bot: {
         token: process.env.BOT_TOKEN,
+        telegraphToken: process.env.TELEGRAPH_TOKEN,
     },
     server: {
         port: Number(process.env.PORT),

@@ -20,6 +20,7 @@
         "request-promise": "^4.2.2",
         "telegraf": "^3.24.0",
         "telegraf-session-local": "0.0.6",
+        "telegraph-node": "^1.0.4",
         "thread-sleep": "^2.1.0"
     }
 }
