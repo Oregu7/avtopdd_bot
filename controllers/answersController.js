@@ -1,4 +1,3 @@
-const _ = require("lodash");
 const { TicketModel } = require("../models");
 const { telegraph } = require("../utils");
 

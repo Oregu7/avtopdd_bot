@@ -1,6 +1,6 @@
 const Markup = require("telegraf/markup");
 const Extra = require("telegraf/extra");
-const { TicketModel } = require("../models");
+const { TicketModel, ExaminationModel } = require("../models");
 const { compileMessage, createRows } = require("../utils");
 
 function createQuestionMessage(ticket, questionNumber = 0) {
