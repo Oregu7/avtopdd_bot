@@ -12,7 +12,7 @@ function createQuestionMessage(ticket, questionNumber = 0) {
         `question:${ticket._id};${questionNumber};${answer.status}`
     ));
     const keyboard = Markup.inlineKeyboard([
-        ...createRows(buttons, 2), [Markup.callbackButton("«Вернуться", "back")],
+        ...createRows(buttons, 2), [Markup.callbackButton("«Вернуться", "backToTickets")],
     ]);
 
     return {
