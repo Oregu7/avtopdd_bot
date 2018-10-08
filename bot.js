@@ -6,6 +6,7 @@ const {
     ticketsController,
     questionController,
     roadSignController,
+    answersController,
 } = require("./controllers");
 
 // configure
@@ -19,9 +20,11 @@ bot.use(localSession.middleware());
 bot.command("start", startController);
 bot.command("tickets", ticketsController.command);
 bot.command("roadSigns", roadSignController.categoriesCommand);
+bot.command("answers", answersController);
 // hears
 bot.hears(/билеты/i, ticketsController.command);
 bot.hears(/знаки/i, roadSignController.categoriesCommand);
+bot.hears(/ответы/i, answersController);
 // actions
 bot.action(/^tickets:(\d+)$/, ticketsController.action);
 bot.action(/^backToTickets$/, ticketsController.backAction);
