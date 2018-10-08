@@ -5,11 +5,10 @@ const Schema = mongoose.Schema;
 const examinationSchema = Schema({
     userId: { type: Number, required: true },
     status: { type: Number, default: 0 },
-    ticket: { type: Schema.Types.ObjectId, ref: "Ticket" },
+    ticket: { type: Schema.Types.ObjectId, ref: "Ticket", required: true },
     answers: [{
-        questionId: { type: Number, required: true },
-        userAnswer: { type: String, required: true },
-        successAnswer: { type: String, required: true },
+        question: { type: Number, required: true },
+        answer: { type: Number, required: true },
         status: { type: Boolean, required: true },
     }],
     createdAt: { type: Date, default: Date.now },
