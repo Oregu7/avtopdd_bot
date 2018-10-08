@@ -12,7 +12,9 @@ module.exports = async(ctx) => {
     const message = "<b>Transinfo Bot - </b> это бот, который поможет Вам выучить правила ПДД.";
     const keyboard = Markup.keyboard([
         Markup.button("Билеты"),
-    ]);
+        Markup.button("Ответы"),
+        Markup.button("Знаки"),
+    ], { columns: 2 });
 
     return ctx.replyWithHTML(compileMessage(message), keyboard.resize(true).extra());
 };

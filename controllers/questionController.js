@@ -1,7 +1,7 @@
 const Markup = require("telegraf/markup");
 const Extra = require("telegraf/extra");
 const { TicketModel } = require("../models");
-const { compileMessage } = require("../utils");
+const { compileMessage, createRows } = require("../utils");
 
 function createQuestionMessage(ticket, questionNumber = 0) {
     const [question] = ticket.questions.splice(questionNumber, 1);
@@ -12,7 +12,7 @@ function createQuestionMessage(ticket, questionNumber = 0) {
         `question:${ticket._id};${questionNumber};${answer.status}`
     ));
     const keyboard = Markup.inlineKeyboard([
-        buttons, [Markup.callbackButton("«Вернуться", "back")],
+        ...createRows(buttons, 2), [Markup.callbackButton("«Вернуться", "back")],
     ]);
 
     return {
