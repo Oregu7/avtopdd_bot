@@ -7,10 +7,13 @@ function createRoadSignMessage(result) {
     const [roadsign] = result.docs;
     const { previous, next } = paginate(result);
     const keyboard = Markup.inlineKeyboard([
-        Markup.callbackButton("«", `roadsign:${roadsign.category};${previous}`),
-        Markup.callbackButton("»", `roadsign:${roadsign.category};${next}`),
-        Markup.callbackButton("« Вернуться", "backToRoadSignsCategories"),
-    ], { columns: 2 });
+        [Markup.callbackButton(`${result.page} из ${result.pages}`, "roadSignNumber")],
+        [
+            Markup.callbackButton("«", `roadsign:${roadsign.category};${previous}`),
+            Markup.callbackButton("»", `roadsign:${roadsign.category};${next}`),
+        ],
+        [Markup.callbackButton("« Вернуться", "backToRoadSignsCategories")],
+    ]);
     const message = `<b>${roadsign.name}</b>\n
     ${roadsign.description.replace("\n", "\n\n")}
     <a href="${roadsign.image}">\u{2063}</a>`;

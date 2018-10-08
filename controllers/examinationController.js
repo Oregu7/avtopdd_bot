@@ -60,8 +60,10 @@ async function updateQuestionKeyboard(ctx, ticket, questionNumber, answerNumber)
         const question = ticket.questions[Number(questionNumber)];
         const buttons = question.answers.map((answer, indx) => {
             let icon = "";
-            if (Number(answerNumber) == indx)
-                icon = answer.status ? "✅" : "❌";
+            if (answer.status)
+                icon = "✔️";
+            else if (Number(answerNumber) == indx)
+                icon = "✖️";
 
             return Markup.callbackButton(`${indx+1} Вариант ${icon}`, "answered");
         });
