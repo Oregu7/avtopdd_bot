@@ -9,7 +9,7 @@ function createRoadSignMessage(result) {
     const keyboard = Markup.inlineKeyboard([
         Markup.callbackButton("«", `roadsign:${roadsign.category};${previous}`),
         Markup.callbackButton("»", `roadsign:${roadsign.category};${next}`),
-        Markup.callbackButton("«Вернуться", "backToRoadSignsCategories"),
+        Markup.callbackButton("« Вернуться", "backToRoadSignsCategories"),
     ], { columns: 2 });
     const message = `<b>${roadsign.name}</b>\n
     ${roadsign.description.replace("\n", "\n\n")}

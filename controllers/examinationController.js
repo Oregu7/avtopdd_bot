@@ -66,7 +66,7 @@ async function updateQuestionKeyboard(ctx, ticket, questionNumber, answerNumber)
             return Markup.callbackButton(`${indx+1} Вариант ${icon}`, "answered");
         });
         const keyboard = Markup.inlineKeyboard([
-            ...createRows(buttons, 2), [Markup.callbackButton("«Вернуться", "backToTickets")],
+            ...createRows(buttons, 2), [Markup.callbackButton("« Вернуться", "backToTickets")],
         ]);
 
         let ok = await ctx.editMessageReplyMarkup(keyboard);
@@ -120,7 +120,7 @@ exports.answerAction = async(ctx) => {
         const { wrong, success } = checkExam(examination);
         let title = "Вы успешно сдали экзамен !";
 
-        const buttons = [Markup.callbackButton("«Вернуться", "backToTickets")];
+        const buttons = [Markup.callbackButton("« Вернуться", "backToTickets")];
         if (wrong > wrongCountAnswers) {
             examination.status = -1;
             title = "Вы провалили экзамен !";

@@ -34,4 +34,8 @@ bot.action(/^answered$/, examinationController.answeredAction);
 bot.action(/^roadsign:(\w+);(\d*)$/, roadSignController.action);
 bot.action(/^backToRoadSignsCategories$/, roadSignController.backAction);
 
+bot.catch((err) => {
+    console.error(err);
+});
+
 module.exports = bot;
