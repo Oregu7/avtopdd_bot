@@ -23,7 +23,7 @@ bot.command("roadSigns", roadSignController.categoriesCommand);
 bot.command("answers", answersController);
 // hears
 bot.hears(/билеты/i, ticketsController.command);
-bot.hears(/знаки/i, roadSignController.categoriesCommand);
+bot.hears(/дорожные знаки/i, roadSignController.categoriesCommand);
 bot.hears(/ответы/i, answersController);
 // actions
 bot.action(/^tickets:(\d+)$/, ticketsController.action);

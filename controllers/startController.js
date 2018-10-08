@@ -13,7 +13,7 @@ module.exports = async(ctx) => {
     const keyboard = Markup.keyboard([
         Markup.button("Билеты"),
         Markup.button("Ответы"),
-        Markup.button("Знаки"),
+        Markup.button("Дорожные Знаки"),
     ], { columns: 2 });
 
     return ctx.replyWithHTML(compileMessage(message), keyboard.resize(true).extra());

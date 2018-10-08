@@ -4,10 +4,7 @@ const config = require("config");
 
 const ph = new telegraph();
 const token = config.get("bot.telegraphToken");
-
-/*ph.createAccount("avtopddbot", { short_name: "avtopddbot", author_name: "Билеты+ПДД" }).then((result) => {
-    console.log(result);
-});*/
+const { BOT } = config.get("constants");
 
 exports.createAnswers = async(tickets) => {
     const title = "Ответы на Билеты";
@@ -31,7 +28,7 @@ exports.createAnswers = async(tickets) => {
 
     return await ph.createPage(token, title, data, {
         return_content: true,
-        author_name: "Билеты+ПДД",
-        author_url: "https://t.me/avtopddbot",
+        author_name: BOT.name,
+        author_url: BOT.url,
     });
 };

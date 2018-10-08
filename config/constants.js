@@ -1,14 +1,14 @@
-const CHANNEL = {
-    name: "iaaicom",
-    url: "https://t.me/iaaicom",
-    username: "@iaaicom",
+const BOT = {
+    name: "Билеты+ПДД",
+    url: "https://t.me/avtopddbot",
+    username: "@avtopddbot",
 };
 
 const LANG_SCENE = "lang_scene";
 const LANG_ACTION = "lang_action";
 
 module.exports = {
-    CHANNEL,
+    BOT,
     LANG_SCENE,
     LANG_ACTION,
 };
