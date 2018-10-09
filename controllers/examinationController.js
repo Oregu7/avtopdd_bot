@@ -131,6 +131,7 @@ exports.answerAction = async(ctx) => {
             examination.status = 1;
         }
         // сохраняем данные о экзамине
+        examination.finishAt = Date.now();
         await examination.save();
 
         // отправляем результаты пользователю
