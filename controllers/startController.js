@@ -12,5 +12,5 @@ module.exports = async(ctx) => {
     const message = "<b>Transinfo Bot - </b> это бот, который поможет Вам выучить правила ПДД.";
     const keyboard = config.get("constants.MAIN_KEYBOARD");
 
-    return ctx.replyWithHTML(compileMessage(message), keyboard.resize(true).extra());
+    return ctx.replyWithHTML(compileMessage(message), keyboard.extra());
 };

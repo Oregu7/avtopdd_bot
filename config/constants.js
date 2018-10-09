@@ -11,7 +11,7 @@ const MAIN_KEYBOARD = Markup.keyboard([
     Markup.button("Ответы"),
     Markup.button("Дорожные Знаки"),
     Markup.button("Правила"),
-], { columns: 2 });
+], { columns: 2 }).resize(true);
 
 module.exports = {
     BOT,
