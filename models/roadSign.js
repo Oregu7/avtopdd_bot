@@ -6,6 +6,7 @@ const roadSignSchema = Schema({
     name: { type: String, required: true },
     description: { type: String, default: "" },
     image: { type: String, required: true },
+    index: { type: Number, default: 0 },
     category: { type: Schema.Types.ObjectId, ref: "RoadSignCategory" },
 });
 roadSignSchema.plugin(mongoosePaginate);

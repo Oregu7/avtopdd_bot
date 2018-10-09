@@ -1,3 +1,4 @@
+const _ = require("lodash");
 const cheerio = require("cheerio");
 const rp = require("request-promise");
 const sleep = require("thread-sleep");
@@ -38,6 +39,20 @@ async function getRoadSigns(link) {
     return roadSigns.get();
 }
 
+async function updateIndexes() {
+    const [category] = await RoadSignCategoryModel.find({}).limit(1).skip(7);
+    console.log(category);
+    const parsedRoadSigns = await getRoadSigns(category.link);
+    const roadSigns = await RoadSignModel.find({ category: category._id });
+
+    for (let roadSign of roadSigns) {
+        let index = _.findIndex(parsedRoadSigns, { name: roadSign.name });
+        roadSign.index = index;
+        await roadSign.save();
+        console.log(index + 1);
+    }
+}
+
 (async() => {
     const categories = await getRoadSingCategories();
 
@@ -52,4 +67,6 @@ async function getRoadSigns(link) {
 
         sleep(5000);
     }
+
+    //updateIndexes();
 })();

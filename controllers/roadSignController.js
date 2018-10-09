@@ -37,6 +37,7 @@ exports.action = async(ctx) => {
     const result = await RoadSignModel.paginate({ category: categoryId }, {
         limit: 1,
         page: pageNumber ? Number(pageNumber) : 1,
+        sort: { index: 1 },
     });
     const { message, keyboard } = createRoadSignMessage(result);
     if (!pageNumber)
