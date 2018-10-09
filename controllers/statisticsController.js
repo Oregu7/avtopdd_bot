@@ -10,8 +10,8 @@ module.exports = async(ctx) => {
 
     const message = `<b>Статистика бота:</b>
     👥 - Пользователи — ${usersCount}
-    👍 - Сдали экзамен — ${successExamCount}
-    👎 - Не сдали экзамен — ${failExamCount}`;
+    ✔️ - Сдали экзамен — ${successExamCount}
+    ✖️ - Не сдали экзамен — ${failExamCount}`;
 
     return ctx.replyWithHTML(compileMessage(message));
 };
