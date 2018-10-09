@@ -9,6 +9,7 @@ const {
     answersController,
     statisticsController,
     rulesController,
+    broadcastController,
 } = require("./controllers");
 
 // configure
@@ -30,6 +31,7 @@ bot.hears(/билеты/i, ticketsController.command);
 bot.hears(/дорожные знаки/i, roadSignController.categoriesCommand);
 bot.hears(/ответы/i, answersController.getChached);
 bot.hears(/правила/i, rulesController.command);
+bot.hears(/\/fun (.+)/i, broadcastController);
 // actions
 bot.action(/^tickets:(\d+)$/, ticketsController.action);
 bot.action(/^backToTickets$/, ticketsController.backAction);

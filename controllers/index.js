@@ -5,6 +5,7 @@ const roadSignController = require("./roadSignController");
 const answersController = require("./answersController");
 const statisticsController = require("./statisticsController");
 const rulesController = require("./rulesController");
+const broadcastController = require("./broadcastController");
 
 module.exports = {
     startController,
@@ -14,4 +15,5 @@ module.exports = {
     answersController,
     statisticsController,
     rulesController,
+    broadcastController,
 };

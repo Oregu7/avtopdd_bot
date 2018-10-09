@@ -1,4 +1,4 @@
-const Markup = require("telegraf/markup");
+const config = require("config");
 const { UserModel } = require("../models");
 const { compileMessage } = require("../utils");
 
@@ -10,12 +10,7 @@ module.exports = async(ctx) => {
     }
 
     const message = "<b>Transinfo Bot - </b> это бот, который поможет Вам выучить правила ПДД.";
-    const keyboard = Markup.keyboard([
-        Markup.button("Билеты"),
-        Markup.button("Ответы"),
-        Markup.button("Дорожные Знаки"),
-        Markup.button("Правила"),
-    ], { columns: 2 });
+    const keyboard = config.get("constants.MAIN_KEYBOARD");
 
     return ctx.replyWithHTML(compileMessage(message), keyboard.resize(true).extra());
 };

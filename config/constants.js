@@ -1,14 +1,19 @@
+const Markup = require("telegraf/markup");
+
 const BOT = {
     name: "Билеты+ПДД",
     url: "https://t.me/avtopddbot",
     username: "@avtopddbot",
 };
 
-const LANG_SCENE = "lang_scene";
-const LANG_ACTION = "lang_action";
+const MAIN_KEYBOARD = Markup.keyboard([
+    Markup.button("Билеты"),
+    Markup.button("Ответы"),
+    Markup.button("Дорожные Знаки"),
+    Markup.button("Правила"),
+], { columns: 2 });
 
 module.exports = {
     BOT,
-    LANG_SCENE,
-    LANG_ACTION,
+    MAIN_KEYBOARD,
 };
