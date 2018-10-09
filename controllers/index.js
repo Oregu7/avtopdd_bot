@@ -4,6 +4,7 @@ const examinationController = require("./examinationController");
 const roadSignController = require("./roadSignController");
 const answersController = require("./answersController");
 const statisticsController = require("./statisticsController");
+const rulesController = require("./rulesController");
 
 module.exports = {
     startController,
@@ -12,4 +13,5 @@ module.exports = {
     roadSignController,
     answersController,
     statisticsController,
+    rulesController,
 };

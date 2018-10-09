@@ -12,6 +12,7 @@
         "cheerio": "^1.0.0-rc.2",
         "config": "^2.0.1",
         "dotenv": "^6.0.0",
+        "encodeurl": "^1.0.2",
         "escape-html": "^1.0.3",
         "lodash": "^4.17.11",
         "mongoose": "^5.3.1",

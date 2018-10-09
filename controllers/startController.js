@@ -14,6 +14,7 @@ module.exports = async(ctx) => {
         Markup.button("Билеты"),
         Markup.button("Ответы"),
         Markup.button("Дорожные Знаки"),
+        Markup.button("Правила"),
     ], { columns: 2 });
 
     return ctx.replyWithHTML(compileMessage(message), keyboard.resize(true).extra());

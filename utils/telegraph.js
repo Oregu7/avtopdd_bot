@@ -1,6 +1,7 @@
 const _ = require("lodash");
 const telegraph = require("telegraph-node");
 const config = require("config");
+const createRulesContent = require("./createRulesContent");
 
 const ph = new telegraph();
 const token = config.get("bot.telegraphToken");
@@ -27,6 +28,16 @@ exports.createAnswers = async(tickets) => {
     }
 
     return await ph.createPage(token, title, data, {
+        return_content: true,
+        author_name: BOT.name,
+        author_url: BOT.url,
+    });
+};
+
+exports.createRules = async(data, title) => {
+    const content = createRulesContent(data);
+
+    return await ph.createPage(token, title, content, {
         return_content: true,
         author_name: BOT.name,
         author_url: BOT.url,
