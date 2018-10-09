@@ -26,6 +26,6 @@ module.exports = async(ctx) => {
         let user = users[i];
         let isLast = i == (users.length - 1);
         setTimeout(sendMessageToUser, timeIndex, ctx, user, text, { isLast, lastIndex: i });
-        timeIndex *= 2;
+        timeIndex += 5000;
     }
 };
